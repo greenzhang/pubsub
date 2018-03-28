@@ -1,6 +1,7 @@
 import { Controller, Get, UseInterceptors } from '@nestjs/common';
 import {
   ClientProxy,
+  ClientRedis,
   Client,
   Transport,
   MessagePattern,
@@ -12,7 +13,7 @@ import { LoggingInterceptor } from '../common/interceptors/logging.interceptor';
 @UseInterceptors(LoggingInterceptor)
 export class MathController {
   @Client({ transport: Transport.REDIS })
-  client: ClientProxy;
+  client: ClientRedis;
 
   @Get()
   call(): Observable<number> {
